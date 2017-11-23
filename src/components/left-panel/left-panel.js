@@ -24,7 +24,7 @@ class LeftPanel extends Component {
 
     render() {
         return (
-            <div className="panel-container">
+            <div className={this.props.className}>
                 <div className="recipes-container">
                     <p className="recipes-title">My Recipes</p>
                     <div className="recipes-list-container">

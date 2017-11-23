@@ -26,8 +26,8 @@ ReactDOM.render(
         recipeService={new RecipeService()}>
         
         <HashRouter>
-            <div>
-                <Header />
+            <div className="root-container">
+                <Header className="header-container"/>
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route path="/about" component={About} />

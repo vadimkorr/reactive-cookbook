@@ -1,5 +1,19 @@
-body {
+html, body, #root {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height: 100%;
+  width: 100%;
 }
+
+#root,.root-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* remove bootstrap's margin*/
+.header-container > * {
+  margin: 0 !important;
+}
+  

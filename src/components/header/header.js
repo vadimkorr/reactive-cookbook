@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-
+import Navbar from 'react-bootstrap/lib/Navbar';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import Nav from 'react-bootstrap/lib/Nav';
 class Header extends Component {
     constructor() {
         super();
@@ -8,9 +10,28 @@ class Header extends Component {
 
     render() {
         return (
-            <div className="links">
-                <Link to="/">App</Link>
-                <Link to="/about">About</Link>
+            <div className={this.props.className}>
+                <Navbar>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <Link to="/">Reactive Cookbook</Link>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav>
+                            <NavItem>
+                                <Link to="/">Board</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link to="/about">About</Link>
+                            </NavItem>
+                        </Nav>
+                        <Navbar.Text pullRight>
+                            Enjoy your meal!
+                        </Navbar.Text>
+                    </Navbar.Collapse>
+                </Navbar>
             </div>
         );
     }

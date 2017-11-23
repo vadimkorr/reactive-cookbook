@@ -86,7 +86,7 @@ class Board extends Component {
 
     render() {
         return (
-            <div className="board-container">
+            <div className={this.props.className} >
                 {!this.state.isCreatingRecipe ? (
                     <div className="getting-started">
                         <span>What will we cook today?</span>
