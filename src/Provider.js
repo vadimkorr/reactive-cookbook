@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RecipeService from './services/recipe.service';
 
 class Provider extends Component {
     getChildContext() {
         return {
-            store: this.props.store
+            store: this.props.store,
+            recipeService: this.props.recipeService
         }
     }
 
@@ -13,7 +15,8 @@ class Provider extends Component {
     }
 }
 Provider.childContextTypes = {
-    store: PropTypes.object
+    store: PropTypes.object,
+    recipeService: PropTypes.instanceOf(RecipeService)
 }
 
 export default Provider;

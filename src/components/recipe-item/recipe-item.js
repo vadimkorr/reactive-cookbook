@@ -3,12 +3,13 @@ import './recipe-item.css';
 
 class RecipeItem extends Component {
     constructor(props) {
-        super();
+        super(props);
     }
+
     render() {
         return (
-            <div className="recipe-item-container">
-                {this.props.recipeName}
+            <div className="recipe-item-container" onClick={this.props.onClick ? this.props.onClick : () => {}}>
+                {this.props.recipe.name}
             </div>
         );
     };

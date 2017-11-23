@@ -10,11 +10,12 @@ import * as recipeActions from './store/actions/recipe.actions'
 import * as userActions from './store/actions/user.actions'
 
 import * as valuesActions from './store/actions/values.actions'
+import RecipeService from './services/recipe.service';
 
 class App extends Component {
-  constructor(props, { store }) {
+  constructor(props, { store, recipeService }) {
     super();
-
+    console.log("A P P: ", recipeService)
     this.state = {
       store
     }
@@ -63,7 +64,8 @@ class App extends Component {
   }
 }
 App.contextTypes = {
-  store: PropTypes.object
+  store: PropTypes.object,
+  recipeService: PropTypes.instanceOf(RecipeService)
 }
 
 export default App;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+//import { Provider } from 'react-redux';
+import Provider from './Provider';
 import './index.css';
 import App from './App';
 import About from './components/about/about';
@@ -9,6 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { reducers } from './store/reducers/reducers';
 //import { Router, Route, hashHistory } from 'react-router';
+import RecipeService from './services/recipe.service';
 import {
     HashRouter,
     Route,
@@ -17,10 +19,11 @@ import {
   } from 'react-router-dom';
 
 ReactDOM.render(
-    <Provider store={createStore(
-        reducers,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}>
+    <Provider 
+        store={createStore(
+            reducers,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}
+        recipeService={new RecipeService()}>
         
         <HashRouter>
             <div>
