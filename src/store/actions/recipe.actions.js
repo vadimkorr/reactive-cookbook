@@ -1,6 +1,7 @@
 export const PUT_INGREDIENT = '[RECIPE] PUT_INGREDIENT';
 export const MAKE_PROCESS = '[RECIPE] MAKE_PROCESS';
 export const WAIT = '[RECIPE] WAIT';
+export const CLEAR_RECIPE = '[RECIPE] CLEAR_RECIPE';
 export const SUBMIT_RECIPE = '[RECIPE] SUBMIT_RECIPE';
 
 export function putIngredient(name, count, quantityUnits) {
@@ -36,8 +37,19 @@ export function wait(time, timeUnits) {
 	}
 }
 
-export function submitRecipe() {
+export function clearRecipe() {
 	return {
-		type: SUBMIT_RECIPE
+		type: CLEAR_RECIPE
+	}
+}
+
+export function submitRecipe(date, name, recipe) {
+	return {
+		type: SUBMIT_RECIPE,
+		payload: {
+			date,
+			name,
+			recipe
+		}
 	}
 }

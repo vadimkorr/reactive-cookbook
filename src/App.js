@@ -30,6 +30,20 @@ class App extends Component {
     store.dispatch(valuesActions.setQuantityUnits(new dataProvider().quantityUnits))
     store.dispatch(valuesActions.setTimeUnits(new dataProvider().timeUnits))
     
+    //create recipe
+    store.dispatch(recipeActions.putIngredient('ing1', 5, 'kg'));
+    store.dispatch(recipeActions.putIngredient('ing2', 2, 'kg'));
+    store.dispatch(recipeActions.putIngredient('ing3', 2, 'kg'));
+    store.dispatch(recipeActions.putIngredient('ing3', 1, 'liter'));
+    store.dispatch(recipeActions.makeProcess("cool"));
+    store.dispatch(recipeActions.wait(1, 'h'));
+
+    store.dispatch(recipeActions.submitRecipe(Date.now(), "Salad", store.getState().currentRecipe));
+    store.dispatch(recipeActions.clearRecipe());
+    
+    
+    
+    
     
     console.log(store.getState())
   }

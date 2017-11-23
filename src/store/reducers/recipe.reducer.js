@@ -38,6 +38,9 @@ export function currentRecipeReducer(state = [], action) {
                 }
             ]
         }
+        case recipeActions.CLEAR_RECIPE: {
+			return []
+        }
         default: {
             return state;
         }
@@ -50,8 +53,9 @@ export function recipeReducer(state = [], action) {
 			return [
                 ...state,
                 {
-                    id: action.payload.id,
+                    id: state.length,
                     date: action.payload.date,
+                    name: action.payload.name,
                     recipe: action.payload.recipe
                 }
             ]
