@@ -1,5 +1,5 @@
 .board-container {
     display: flex;
-    flex: 1;
+    flex: 5;
     background-color: mistyrose;
 }
