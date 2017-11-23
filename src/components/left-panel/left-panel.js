@@ -24,16 +24,12 @@ class LeftPanel extends Component {
 
     render() {
         return (
-            <div className={this.props.className}>
-                <div className="recipes-container">
-                    <p className="recipes-title">My Recipes</p>
-                    <div className="recipes-list-container">
-                        <ul className="recipes-list">
-                            {this.props.recipes.map((recipe, ind) => (
-                                <RecipeItem key={ind} className="recipe-item" onClick={() => { this.onRecipeClick(recipe)}} recipe={recipe}/>
-                            ))}    
-                        </ul>
-                    </div>
+            <div className="left-container">
+                <p className="recipes-title">My Recipes</p>
+                <div className="recipes-list">
+                    {this.props.recipes.map((recipe, ind) => (
+                        <RecipeItem key={ind} onClick={() => { this.onRecipeClick(recipe)}} recipe={recipe}/>
+                    ))}    
                 </div>
             </div>
         );

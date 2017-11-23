@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './recipe-item.css';
+import Panel  from 'react-bootstrap/lib/Panel';
+
 
 class RecipeItem extends Component {
     constructor(props) {
@@ -8,9 +10,9 @@ class RecipeItem extends Component {
 
     render() {
         return (
-            <div className="recipe-item-container" onClick={this.props.onClick ? this.props.onClick : () => {}}>
+            <Panel onClick={this.props.onClick ? this.props.onClick : () => {}}>
                 {this.props.recipe.name}
-            </div>
+            </Panel>
         );
     };
 }

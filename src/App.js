@@ -36,18 +36,19 @@ class App extends Component {
     store.dispatch(valuesActions.setTimeUnits(new dataProvider().timeUnits))
     
     //create recipe
-    store.dispatch(recipeActions.putIngredient('ing1', 5, 'kg'));
-    store.dispatch(recipeActions.putIngredient('ing2', 2, 'kg'));
-    store.dispatch(recipeActions.putIngredient('ing3', 2, 'kg'));
-    store.dispatch(recipeActions.putIngredient('ing3', 1, 'liter'));
-    store.dispatch(recipeActions.makeProcess("cool"));
-    store.dispatch(recipeActions.wait(1, 'h'));
-
-    
-    store.dispatch(recipeActions.submitRecipe(Date.now(), "Salad", store.getState().currentRecipe));
-    store.dispatch(recipeActions.clearRecipe());
-    
-    
+    for(let i=0; i<15; i++) {
+      (() => {
+        store.dispatch(recipeActions.putIngredient('ing1', 5, 'kg'));
+        store.dispatch(recipeActions.putIngredient('ing2', 2, 'kg'));
+        store.dispatch(recipeActions.putIngredient('ing3', 2, 'kg'));
+        store.dispatch(recipeActions.putIngredient('ing3', 1, 'liter'));
+        store.dispatch(recipeActions.makeProcess("cool"));
+        store.dispatch(recipeActions.wait(1, 'h'));
+        let name = i == 0 ? "very very very long name of salad" : "Salad " + i;
+        store.dispatch(recipeActions.submitRecipe(Date.now(), name, store.getState().currentRecipe));
+        store.dispatch(recipeActions.clearRecipe());
+      })();
+    }
     
     
     console.log(store.getState())
@@ -55,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <div className="content-container">
-        <LeftPanel className="left-container" />
+        <LeftPanel />
         <Board className="board" getCurrentRecipe={() => this.state.store.getState().currentRecipe} />
       </div>
     );

@@ -1,0 +1,35 @@
+.left-container {
+    display: flex;
+    flex: 1 0 200px;
+    flex-direction: column;
+    background-color: papayawhip;
+    padding: 5px 0;
+    min-width: 0;
+}
+
+.recipes-title {
+    font-size: 18px;
+    text-align: center;
+}
+
+.recipes-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 7px;
+    overflow-y: scroll;
+}
+
+.recipes-list > *:not(:last-child) {
+    margin: 0 0 2px 0 !important;
+}
+
+.recipes-list > *:last-child {
+    margin: 0 !important;
+}
+
+.recipes-list .panel-body {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
