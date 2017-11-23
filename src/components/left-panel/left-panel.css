@@ -2,7 +2,7 @@
     display: flex;
     flex: 1 0 200px;
     flex-direction: column;
-    background-color: papayawhip;
+    background-color: #f2bcce;
     padding: 5px 0;
     min-width: 0;
 }
@@ -18,6 +18,11 @@
     flex: 1;
     padding: 0 7px;
     overflow-y: scroll;
+}
+
+.recipes-list > * {
+    cursor: pointer;
+    background-color: #f4f4f4;
 }
 
 .recipes-list > *:not(:last-child) {

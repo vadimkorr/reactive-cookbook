@@ -57,7 +57,7 @@ class App extends Component {
     return (
       <div className="content-container">
         <LeftPanel />
-        <Board className="board" getCurrentRecipe={() => this.state.store.getState().currentRecipe} />
+        <Board getCurrentRecipe={() => this.state.store.getState().currentRecipe} />
       </div>
     );
   }

@@ -3,11 +3,11 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import FormControl  from 'react-bootstrap/lib/FormControl';
+import Button  from 'react-bootstrap/lib/Button';
 import './board.css';
 import ArrayDropdown from '../array-dropdown/array-dropdown';
 import * as valuesActions from '../../store/actions/values.actions';
 import * as recipeActions from '../../store/actions/recipe.actions';
-
 
 class Board extends Component {
     constructor({ values, dispatchValueAction, dispatchRecipeAction, getCurrentRecipe, ...rest }) {
@@ -19,7 +19,7 @@ class Board extends Component {
             timeUnits: values.timeUnits,
             quantityUnits:  values.quantityUnits,
             processes: values.processes,
-            recipeSteps: undefined,
+            recipeSteps: "",
             recipeName: undefined,
             isCreatingRecipe: false
         };
@@ -50,7 +50,7 @@ class Board extends Component {
     pushToRecipeSteps(...args) {
         console.log(this.refs.recipeSteps);
         this.setState({
-            recipeSteps: this.state.recipeSteps + "\n" + args
+            recipeSteps: this.state.recipeSteps + args + "\n"
         });
     }
 
@@ -81,46 +81,48 @@ class Board extends Component {
     onSaveRecipe = (e) => {
         this.props.dispatchRecipeAction.submitRecipe(Date.now(), this.state.recipeName, this.props.getCurrentRecipe());
         this.props.dispatchRecipeAction.clearRecipe();
+        this.setState({
+            recipeSteps: ""
+        })
         this.stopRecipe();
+        alert("Your recipe was succesfully saved!");
     }
 
     render() {
         return (
-            <div className={this.props.className} >
+            <div className="board" >
                 {!this.state.isCreatingRecipe ? (
                     <div className="getting-started">
                         <span>What will we cook today?</span>
                         <div className="recipe-name-controls">
-                            <input type="text" onChange={ (e) => this.setState({ recipeName: e.target.value })} />
-                            <button onClick={ this.startRecipe }>Let's start</button>
+                            <FormControl type="text" onChange={ (e) => this.setState({ recipeName: e.target.value })} />
+                            <Button onClick={ this.startRecipe }>Let's start</Button>
                         </div>
                     </div>
                 ) : (
-                    <div>
-                        <div className="recipe-name"></div>
+                    <div className="board-elements">
+                        <div className="recipe-name">{this.state.recipeName}</div>
                         <div className="recipe-actions">
                             <div className="recipe-action-container">
                                 <span>Put</span>
                                 <ArrayDropdown arr={this.state.ingredients} ref="ingredientName"/>
-                                <input type="text" ref="ingredientCount"/>
+                                <FormControl type="text" ref="ingredientCount"/>
                                 <ArrayDropdown arr={this.state.quantityUnits} ref="ingredientQuantityUnits"/>
-                                <button className="actionDone btn btn-info" onClick={this.onPutDone}>Done</button>
+                                <Button bsStyle="success" className="actionDone" onClick={this.onPutDone}>Done</Button>
                             </div>
                             <div className="recipe-action-container">
                                 <span>Wait</span>
-                                <input type="text" ref="waitCount"/>
+                                <FormControl type="text" ref="waitCount"/>
                                 <ArrayDropdown arr={this.state.timeUnits} ref="waitTimeUnits"/>
-                                <button className="actionDone" onClick={this.onWaitDone}>Done</button>
+                                <Button bsStyle="success" className="actionDone" onClick={this.onWaitDone}>Done</Button>
                             </div>
                             <div className="recipe-action-container">
                                 <span>Do</span>
                                 <ArrayDropdown arr={this.state.processes} ref="makeProcess"/>
-                                <button className="actionDone" onClick={this.onDoDone}>Done</button>
+                                <Button bsStyle="success" className="actionDone" onClick={this.onDoDone}>Done</Button>
                             </div>
                         </div>
-                        <div>
-                            <button onClick={this.onSaveRecipe}>Save recipe</button>
-                        </div>
+                        <Button bsStyle="success" bsSize="large" onClick={this.onSaveRecipe}>Save recipe</Button>
                         <FormControl componentClass="textarea" placeholder="textarea" ref="recipeSteps" value={this.state.recipeSteps} />
                     </div>
                 )}

@@ -1,0 +1,65 @@
+.board {
+    display: flex;
+    flex: 1 0 500px;
+    background-color: #dcdcdc;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    overflow-x: scroll;
+}
+
+.getting-started {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.getting-started > span {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recipe-name {
+    font-size: 18px;
+}
+
+.recipe-name-controls {
+    display: flex;
+    flex-direction: row;
+}
+
+.recipe-name-controls > *:first-child {
+    margin-right: 5px;
+}
+
+.recipe-action-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.recipe-action-container:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.recipe-action-container > *{
+    min-width: 20%;
+    flex: 0 0 20%;
+}
+.recipe-action-container > *:first-child {
+    min-width: 40px;
+    flex: 0 0 40px;
+}
+.recipe-action-container > *:not(:first-child) {
+    margin-left: 10px;
+}
+
+.board-elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-elements > * {
+    margin-bottom: 20px;
+}

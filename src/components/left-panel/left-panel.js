@@ -16,10 +16,9 @@ class LeftPanel extends Component {
     }
 
     onRecipeClick(recipe) {
-        // if (this.restProps.onRecipeClick) {
-
-        // }
-        console.log(this.context.recipeService.getRecipeAsText(recipe.recipe));
+        alert(`${recipe.name}\n${this.context.recipeService.getRecipeAsText(recipe.recipe).reduce((sum, curr) => {
+            return sum += "\n" + curr;
+        })}`);
     }
 
     render() {

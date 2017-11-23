@@ -1,0 +1,11 @@
+.navbar {
+    background-color: #a7a7a7;
+}
+
+.navbar-brand, .navbar-text, a {
+    color: #e7e7e7 !important;
+}
+
+a {
+    text-decoration: none !important;
+}

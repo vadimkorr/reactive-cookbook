@@ -6,9 +6,3 @@
   display: flex;
   justify-content: flex-start;
 }
-
-.board {
-  display: flex;
-  flex: 1 0 500px;
-  background-color: mistyrose
-}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './header.css';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavItem from 'react-bootstrap/lib/NavItem';
@@ -10,7 +11,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div className={this.props.className}>
+            <div className="header-container">
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
