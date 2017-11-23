@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './board.css';
 import ArrayDropdown from '../array-dropdown/array-dropdown';
+import * as valuesActions from '../../store/actions/values.actions';
 
 class Board extends Component {
-    constructor(props, { store }) {
-        super(props);
+    constructor({ values, actions, ...rest }) {
+        super();
         this.state = {
-            ingredients: store.getState().values.ingredients,
-            timeUnits: store.getState().values.timeUnits,
-            quantityUnits: store.getState().values.quantityUnits,
-            processes: store.getState().values.processes,
+            ingredients: values.ingredients,
+            timeUnits: values.timeUnits,
+            quantityUnits:  values.quantityUnits,
+            processes: values.processes,
         };
     }
 
@@ -62,4 +65,16 @@ class Board extends Component {
 Board.contextTypes = {
     store: PropTypes.object
 }
-export default Board;
+
+const mapStateToProps = (state) => ({
+    values: state.values
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(valuesActions, dispatch)
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Board);
