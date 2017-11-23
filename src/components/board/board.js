@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import FormControl  from 'react-bootstrap/lib/FormControl';
 import './board.css';
 import ArrayDropdown from '../array-dropdown/array-dropdown';
 import * as valuesActions from '../../store/actions/values.actions';
@@ -18,6 +19,7 @@ class Board extends Component {
             timeUnits: values.timeUnits,
             quantityUnits:  values.quantityUnits,
             processes: values.processes,
+            recipeSteps: ""
         };
     }
 
@@ -31,12 +33,20 @@ class Board extends Component {
         );
     }
 
+    pushToRecipeSteps(...args) {
+        console.log(this.refs.recipeSteps);
+        this.setState({
+            recipeSteps: this.state.recipeSteps + "\n" + args
+        });
+    }
+
     onPutDone = (e) => {
         this.props.dispatchRecipeAction.putIngredient(
             this.refs.ingredientName.state.value,
             this.refs.ingredientCount.value,
             this.refs.ingredientQuantityUnits.state.value
         );
+        this.pushToRecipeSteps("put");
     }
 
     onWaitDone = (e) => {
@@ -44,12 +54,14 @@ class Board extends Component {
             this.refs.waitCount.value,
             this.refs.waitTimeUnits.state.value
         );
+        this.pushToRecipeSteps("wait");
     }
 
     onDoDone = (e) => {
         this.props.dispatchRecipeAction.makeProcess(
             this.refs.makeProcess.state.value
-        );      
+        );
+        this.pushToRecipeSteps("make");
     }
 
     onSaveRecipe = (e) => {
@@ -94,6 +106,7 @@ class Board extends Component {
                 <div>
                     <button onClick={this.onSaveRecipe}>Save recipe</button>
                 </div>
+                <FormControl componentClass="textarea" placeholder="textarea" ref="recipeSteps" value={this.state.recipeSteps} />
             </div>
         );
     };
