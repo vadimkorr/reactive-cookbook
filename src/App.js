@@ -13,7 +13,11 @@ import * as valuesActions from './store/actions/values.actions'
 
 class App extends Component {
   constructor(props, { store }) {
-    super(props);
+    super();
+
+    this.state = {
+      store
+    }
 
     const boundSetUserName = (name) => store.dispatch(userActions.setUserName(name))
     
@@ -38,9 +42,9 @@ class App extends Component {
     store.dispatch(recipeActions.makeProcess("cool"));
     store.dispatch(recipeActions.wait(1, 'h'));
 
+    
     store.dispatch(recipeActions.submitRecipe(Date.now(), "Salad", store.getState().currentRecipe));
     store.dispatch(recipeActions.clearRecipe());
-    
     
     
     
@@ -52,7 +56,7 @@ class App extends Component {
       <div className="App">
         <div className="content-container">
           <LeftPanel className="left-container" />
-          <Board className="board"/>
+          <Board className="board" getCurrentRecipe={() => this.state.store.getState().currentRecipe} />
         </div>
       </div>
     );

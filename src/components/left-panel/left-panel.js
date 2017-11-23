@@ -9,9 +9,6 @@ import {connect} from 'react-redux';
 class LeftPanel extends Component {
     constructor({ recipes, actions, ...rest }) {
         super();
-        this.state = {
-            recipes
-        }
     }
     render() {
         return (
@@ -20,7 +17,7 @@ class LeftPanel extends Component {
                     <p className="recipes-title">My Recipes</p>
                     <div className="recipes-list-container">
                         <ul className="recipes-list">
-                            {this.state.recipes.map((recipe, ind) => (
+                            {this.props.recipes.map((recipe, ind) => (
                                 <RecipeItem key={ind} className="recipe-item" recipeName={recipe.name}/>
                             ))}    
                         </ul>

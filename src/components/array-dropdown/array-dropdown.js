@@ -5,26 +5,39 @@ import './array-dropdown.css';
 import FormControl  from 'react-bootstrap/lib/FormControl';
 
 class ArrayDropdown extends Component {
-    constructor(props, { store }) {
+    constructor(props) {
         super(props);
+        this.state = {
+            value: undefined
+        }
+    }
+
+    onChange = (e) => {
+        let valAsJson = JSON.parse(e.target.value);
+        this.setState({
+            value: valAsJson
+        });
+        if (this.props.onChange) { 
+            this.props.onChange(valAsJson);
+        }
     }
 
     render() {
         return (
-            <FormControl componentClass="select" placeholder="select">
-                {this.props.arr.map((item, index) => (
-                    <option key={index} value={item}>{item}</option>
+            <FormControl componentClass="select" placeholder="select" onChange={this.onChange}>
+                {this.props.arr.map((item, ind) => (
+                    <option key={ind} value={JSON.stringify(this.props.arr[ind])}>{item}</option>
                 ))}
             </FormControl>
         );
     }
 }
-ArrayDropdown.propTypes = {
-    arr: PropTypes.array.isRequired
-};
+// ArrayDropdown.propTypes = {
+//     arr: PropTypes.array.isRequired
+// };
 
-ArrayDropdown.contextTypes = {
-    store: PropTypes.object
-}
+// ArrayDropdown.contextTypes = {
+//     store: PropTypes.object
+// }
 
 export default ArrayDropdown;
