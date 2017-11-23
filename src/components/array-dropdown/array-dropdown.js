@@ -5,13 +5,8 @@ import './array-dropdown.css';
 import FormControl  from 'react-bootstrap/lib/FormControl';
 
 class ArrayDropdown extends Component {
-    propTypes = {
-        arr: PropTypes.array.isRequired
-    };
-
-    constructor(props) {
+    constructor(props, { store }) {
         super(props);
-        console.log(props);
     }
 
     render() {
@@ -23,6 +18,13 @@ class ArrayDropdown extends Component {
             </FormControl>
         );
     }
+}
+ArrayDropdown.propTypes = {
+    arr: PropTypes.array.isRequired
+};
+
+ArrayDropdown.contextTypes = {
+    store: PropTypes.object
 }
 
 export default ArrayDropdown;
