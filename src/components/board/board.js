@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './board.css';
-import ingredientsService from '../../services/ingredients.service';
-import timeUnitsService from '../../services/timeUnits.service';
-import quantityUnitsService from '../../services/quantityUnits.service';
-import processesService from '../../services/processes.service';
 import ArrayDropdown from '../array-dropdown/array-dropdown';
 
 class Board extends Component {
-    constructor() {
-        super()
+    constructor(props, { store }) {
+        super(props);
         this.state = {
-            ingredients: new ingredientsService().getIngredients(),
-            timeUnits: new timeUnitsService().getTimeUnits(),
-            quantityUnits: new quantityUnitsService().getQuantityUnits(),
-            processes: new processesService().getProcesses(),
+            ingredients: store.getState().values.ingredients,
+            timeUnits: store.getState().values.timeUnits,
+            quantityUnits: store.getState().values.quantityUnits,
+            processes: store.getState().values.processes,
         };
     }
 
@@ -62,5 +59,7 @@ class Board extends Component {
         );
     };
 }
-
+Board.contextTypes = {
+    store: PropTypes.object
+}
 export default Board;

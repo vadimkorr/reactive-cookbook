@@ -4,9 +4,12 @@ import logo from './logo.svg';
 import './App.css';
 import LeftPanel from './components/left-panel/left-panel';
 import Board from './components/board/board';
+import dataProvider from './services/dataProvider.service';
 
 import * as recipeActions from './store/actions/recipe.actions'
 import * as userActions from './store/actions/user.actions'
+
+import * as valuesActions from './store/actions/values.actions'
 
 class App extends Component {
   constructor(props, { store }) {
@@ -21,21 +24,19 @@ class App extends Component {
     
     boundPutIngredient("Potato", 5, "piece")
     boundSetUserName("John")
+
+    store.dispatch(valuesActions.setIngredients(new dataProvider().ingredients))
+    store.dispatch(valuesActions.setProcesses(new dataProvider().processes))
+    store.dispatch(valuesActions.setQuantityUnits(new dataProvider().quantityUnits))
+    store.dispatch(valuesActions.setTimeUnits(new dataProvider().timeUnits))
+    
     
     console.log(store.getState())
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1> */}
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
         <div className="content-container">
-          
           <LeftPanel className="left-container" />
           <Board className="board"/>
         </div>
