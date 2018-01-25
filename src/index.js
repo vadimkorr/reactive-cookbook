@@ -5,6 +5,8 @@ import Provider from './Provider';
 import './index.css';
 import App from './App';
 import About from './components/about/about';
+import Login from './components/login/login';
+import Signup from './components/signup/signup';
 import Header from './components/header/header';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
@@ -31,6 +33,8 @@ ReactDOM.render(
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route path="/about" component={About} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={Signup} />                    
                 </Switch>
             </div>
         </HashRouter>

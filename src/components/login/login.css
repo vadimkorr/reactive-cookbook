@@ -1,0 +1,30 @@
+.login-cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    margin: 100px 20px 20px 20px;
+}
+
+.outer-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-link-cont {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.signup-link-cont > a {
+    color: green !important;
+    text-decoration: underline !important;
+}
+
