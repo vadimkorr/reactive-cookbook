@@ -9,21 +9,21 @@ class Login extends Component {
     }
     render() {
         return (
-            <div class="outer-cont">
-                <div class="login-cont">
-                    <div class="form-group">
-                        <label for="login-input">Login</label>
+            <div className="outer-cont">
+                <div className="login-cont">
+                    <div className="form-group">
+                        <label htmlFor="login-input">Login</label>
                         <input type="text" id="login-input"/>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd-input">Password</label>
+                    <div className="form-group">
+                        <label htmlFor="pwd-input">Password</label>
                         <input type="password" id="pwd-input"/>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">Login</button>
+                    <div className="form-group">
+                        <button className="btn btn-primary">Login</button>
                     </div>
-                    <div class="form-group signup-link-cont">
-                        <Link to="/signup" activeClassName="active">I don't have account</Link>
+                    <div className="form-group signup-link-cont">
+                        <Link to="/signup">I don't have account</Link>
                     </div>
                 </div>
             </div>

@@ -2,32 +2,64 @@ import React, { Component } from 'react';
 import './signup.css';
 import { Link } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/lib/Button';
+import ApiService from '../../services/api.service';
+
 class Signup extends Component {
     constructor({ ...restProps }, context) {
         super();
-        console.log("RECIPE SERVICE")
+        this.state = {
+            username: '',
+            email: '',
+            password: ''
+        }
     }
+
+    signup() {
+        this.context.apiService.signup({
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password
+        });
+    }
+
     render() {
         return (
-            <div class="outer-cont">
-                <div class="login-cont">
-                    <div class="form-group">
-                        <label for="login-input">Login</label>
-                        <input type="text" id="login-input"/>
+            <div className="outer-cont">
+                <div className="login-cont">
+                    <div className="form-group">
+                        <label htmlFor="login-input">User Name</label>
+                        <input
+                            type="text"
+                            id="login-input"
+                            onChange = {(e) => this.setState({username: e.target.value})}/>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd-input">Password</label>
-                        <input type="password" id="pwd-input"/>
+                    <div className="form-group">
+                        <label htmlFor="login-input">Email</label>
+                        <input
+                            type="text"
+                            id="login-input"
+                            onChange = {(e) => this.setState({email: e.target.value})}/>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd-input">Confirm password</label>
-                        <input type="password" id="pwd-input"/>
+                    <div className="form-group">
+                        <label htmlFor="pwd-input">Password</label>
+                        <input
+                            type="password"
+                            id="pwd-input"
+                            onChange = {(e) => this.setState({password: e.target.value})}/>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">Sign Up</button>
+                    <div className="form-group">
+                        <label htmlFor="pwd-input">Confirm password</label>
+                        <input 
+                            type="password"
+                            id="conf-pwd-input"/>
                     </div>
-                    <div class="form-group signup-link-cont">
-                         <Link to="/login" activeClassName="active">I have account</Link>
+                    <div className="form-group">
+                        <Button bsStyle="success" onClick={() => {this.signup()} }>Sign Up</Button>
+                    </div>
+                    <div className="form-group signup-link-cont">
+                        <Link to="/login">I have account</Link>
                     </div>
                 </div>
             </div>
@@ -35,21 +67,20 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
-
-/*Login.contextTypes = {
-    // recipeService: PropTypes.instanceOf(RecipeService)
+Signup.contextTypes = {
+    apiService: PropTypes.instanceOf(ApiService)
 }
 
-const mapStateToProps = (state) => ({
-    recipes: state.recipes
-});
+export default Signup;
+// const mapStateToProps = (state) => ({
+//     recipes: state.recipes
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(recipeActions, dispatch)
-});
+// const mapDispatchToProps = (dispatch) => ({
+//     actions: bindActionCreators(recipeActions, dispatch)
+// });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LeftPanel);*/
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(LeftPanel);

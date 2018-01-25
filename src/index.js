@@ -13,6 +13,7 @@ import { createStore } from 'redux';
 import { reducers } from './store/reducers/reducers';
 //import { Router, Route, hashHistory } from 'react-router';
 import RecipeService from './services/recipe.service';
+import ApiService from './services/api.service';
 import {
     HashRouter,
     Route,
@@ -25,7 +26,8 @@ ReactDOM.render(
         store={createStore(
             reducers,
             window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}
-        recipeService={new RecipeService()}>
+        recipeService={new RecipeService()}
+        apiService={new ApiService()}>
         
         <HashRouter>
             <div className="root-container">
