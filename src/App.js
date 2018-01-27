@@ -31,22 +31,22 @@ class App extends Component {
     boundPutIngredient("Potato", 5, "piece")
     boundSetUserName("John")
 
-    store.dispatch(valuesActions.setIngredients(new dataProvider().ingredients))
-    store.dispatch(valuesActions.setProcesses(new dataProvider().processes))
-    store.dispatch(valuesActions.setQuantityUnits(new dataProvider().quantityUnits))
-    store.dispatch(valuesActions.setTimeUnits(new dataProvider().timeUnits))
+    store.dispatch(valuesActions.setIngredients(dataProvider.ingredients))
+    store.dispatch(valuesActions.setProcesses(dataProvider.processes))
+    store.dispatch(valuesActions.setQuantityUnits(dataProvider.quantityUnits))
+    store.dispatch(valuesActions.setTimeUnits(dataProvider.timeUnits))
     
     //create recipe
-    for(let i=0; i<15; i++) {
+    for(let i=0; i<1; i++) {
       (() => {
-        store.dispatch(recipeActions.putIngredient('ing1', 5, 'kg'));
-        store.dispatch(recipeActions.putIngredient('ing2', 2, 'kg'));
-        store.dispatch(recipeActions.putIngredient('ing3', 2, 'kg'));
-        store.dispatch(recipeActions.putIngredient('ing3', 1, 'liter'));
-        store.dispatch(recipeActions.makeProcess("cool"));
-        store.dispatch(recipeActions.wait(1, 'h'));
+        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing1', 5, 'kg'));
+        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing2', 2, 'kg'));
+        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 2, 'kg'));
+        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 1, 'liter'));
+        store.dispatch(recipeActions.makeProcess(dataProvider.recipeStepType[1], "cool"));
+        store.dispatch(recipeActions.wait(dataProvider.recipeStepType[2], 1, 'h'));
         let name = i == 0 ? "very very very long name of salad" : "Salad " + i;
-        store.dispatch(recipeActions.submitRecipe(Date.now(), name, store.getState().currentRecipe));
+        store.dispatch(recipeActions.submitRecipe(name, Date.now(), store.getState().currentRecipe));
         store.dispatch(recipeActions.clearRecipe());
       })();
     }

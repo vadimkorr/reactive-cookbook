@@ -1,21 +1,29 @@
-export default class dataProvider {
-    ingredients = [
+let dataProvider = {
+    recipeStepType: [
+        "put",
+        "make",
+        "wait"
+    ],
+
+    ingredients: [
         "butter",
         "water"
-    ];
-    timeUnits = [
+    ],
+    timeUnits: [
         "ms",
-        "sec",
-        "min",
+        "s",
+        "m",
         "h"
-    ];
-    quantityUnits = [
+    ],
+    quantityUnits: [
         "g",
         "kg",
         "liter"
-    ];
-    processes = [
+    ],
+    processes: [
         "cool",
         "bake"
     ]
 }
+
+export default dataProvider

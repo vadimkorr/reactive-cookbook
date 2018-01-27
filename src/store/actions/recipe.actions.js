@@ -3,12 +3,13 @@ export const MAKE_PROCESS = '[RECIPE] MAKE_PROCESS';
 export const WAIT = '[RECIPE] WAIT';
 export const CLEAR_RECIPE = '[RECIPE] CLEAR_RECIPE';
 export const SUBMIT_RECIPE = '[RECIPE] SUBMIT_RECIPE';
+export const START_RECIPE = '[RECIPE] START_RECIPE';
 
-export function putIngredient(name, count, quantityUnits) {
+export function putIngredient(type, name, count, quantityUnits) {
 	return {
 		type: PUT_INGREDIENT,
 		payload: {
-			type: PUT_INGREDIENT,
+			type: type,
 			ingredient: name,
 			quantityUnits: quantityUnits,
 			count: count
@@ -16,23 +17,33 @@ export function putIngredient(name, count, quantityUnits) {
 	}
 }
 
-export function makeProcess(processName) {
+export function makeProcess(type, processName) {
 	return {
 		type: MAKE_PROCESS,
 		payload: {
-			type: MAKE_PROCESS,
+			type: type,
 			processName: processName
 		}
 	}
 }
 
-export function wait(time, timeUnits) {
+export function wait(type, time, timeUnits) {
 	return {
 		type: WAIT,
 		payload: {
-			type: WAIT,
+			type: type,
 			time: time,
 			timeUnits: timeUnits
+		}
+	}
+}
+
+export function startRecipe(name, date) {
+	return {
+		type: START_RECIPE,
+		payload: {
+			name,
+			date
 		}
 	}
 }
@@ -43,13 +54,13 @@ export function clearRecipe() {
 	}
 }
 
-export function submitRecipe(date, name, recipe) {
+export function submitRecipe(recipe) {
 	return {
 		type: SUBMIT_RECIPE,
 		payload: {
-			date,
-			name,
 			recipe
 		}
 	}
 }
+
+

@@ -8,8 +8,12 @@ class ArrayDropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: undefined
+            value: this.props.arr[0]
         }
+    }
+
+    getSelected = () => {
+        return this.state.value;
     }
 
     onChange = (e) => {

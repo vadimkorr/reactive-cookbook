@@ -8,6 +8,7 @@ import './board.css';
 import ArrayDropdown from '../array-dropdown/array-dropdown';
 import * as valuesActions from '../../store/actions/values.actions';
 import * as recipeActions from '../../store/actions/recipe.actions';
+import dataProvider from '../../services/dataProvider.service';
 
 class Board extends Component {
     constructor({ values, dispatchValueAction, dispatchRecipeAction, getCurrentRecipe, ...rest }) {
@@ -26,6 +27,11 @@ class Board extends Component {
     }
 
     startRecipe = (e) => {
+        this.props.dispatchRecipeAction.startRecipe(
+            this.state.recipeName,
+            new Date().toUTCString()
+        );
+
         this.setState({
             isCreatingRecipe: true
         });
@@ -56,6 +62,7 @@ class Board extends Component {
 
     onPutDone = (e) => {
         this.props.dispatchRecipeAction.putIngredient(
+            dataProvider.recipeStepType.indexOf('put'),  
             this.refs.ingredientName.state.value,
             this.refs.ingredientCount.value,
             this.refs.ingredientQuantityUnits.state.value
@@ -63,23 +70,25 @@ class Board extends Component {
         this.pushToRecipeSteps("put");
     }
 
-    onWaitDone = (e) => {
+    onWaitDone = () => {
         this.props.dispatchRecipeAction.wait(
-            this.refs.waitCount.value,
-            this.refs.waitTimeUnits.state.value
+            dataProvider.recipeStepType.indexOf('wait'), 
+            this.waitCount.value,
+            this.waitTimeUnits.getSelected()
         );
         this.pushToRecipeSteps("wait");
     }
 
     onDoDone = (e) => {
         this.props.dispatchRecipeAction.makeProcess(
+            dataProvider.recipeStepType.indexOf('make'), 
             this.refs.makeProcess.state.value
         );
         this.pushToRecipeSteps("make");
     }
 
     onSaveRecipe = (e) => {
-        this.props.dispatchRecipeAction.submitRecipe(Date.now(), this.state.recipeName, this.props.getCurrentRecipe());
+        this.props.dispatchRecipeAction.submitRecipe(this.state.recipeName, Date.now(), this.props.getCurrentRecipe());
         this.props.dispatchRecipeAction.clearRecipe();
         this.setState({
             recipeSteps: ""
@@ -112,8 +121,8 @@ class Board extends Component {
                             </div>
                             <div className="recipe-action-container">
                                 <span>Wait</span>
-                                <FormControl type="text" ref="waitCount"/>
-                                <ArrayDropdown arr={this.state.timeUnits} ref="waitTimeUnits"/>
+                                <FormControl type="text" inputRef={ node => this.waitCount = node }/>
+                                <ArrayDropdown arr={this.state.timeUnits} ref={ node => this.waitTimeUnits = node } />
                                 <Button bsStyle="success" className="actionDone" onClick={this.onWaitDone}>Done</Button>
                             </div>
                             <div className="recipe-action-container">

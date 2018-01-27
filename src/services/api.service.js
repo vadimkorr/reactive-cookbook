@@ -1,17 +1,20 @@
-export default class ApiService {
+class ApiService {
     BASE_URL = 'http://localhost:52892';
     apis = {
-        signup: '/api/accounts/register'
+        signup: '/api/accounts/register',
+        submitRecipe: '/api/Recipes/submit'
     }
 
     post(url, body, headers) {
+        let header = {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'       
+        }
+        if (headers) Object.assign(header, header, headers)
         return new Promise((res, rej) => {
             fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json'                 
-                },
+                headers: header,
                 body: JSON.stringify(body)
             })
             .then(resp => {
@@ -33,3 +36,5 @@ export default class ApiService {
         return this.post(this.BASE_URL + this.apis.signup, data);
     }
 }
+
+export default ApiService;

@@ -9,11 +9,15 @@ import Login from './components/login/login';
 import Signup from './components/signup/signup';
 import Header from './components/header/header';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { reducers } from './store/reducers/reducers';
 //import { Router, Route, hashHistory } from 'react-router';
 import RecipeService from './services/recipe.service';
 import ApiService from './services/api.service';
+
+import RecipeApiService from './services/recipe-api.service'
+import { SUBMIT_RECIPE } from './store/actions/recipe.actions';
+
 import {
     HashRouter,
     Route,
@@ -21,11 +25,25 @@ import {
     Switch
   } from 'react-router-dom';
 
+const serviceMiddleware = myServiceMiddleware(new RecipeApiService())
+function myServiceMiddleware(recipeApiService) {
+    console.log("myServiceMiddleware init!");
+    return ({ dispatch, getState }) => next => action => {
+        if (action.type == SUBMIT_RECIPE) {
+            console.log(getState());
+            recipeApiService.submitRecipe(getState().currentRecipe);
+        }
+        return next(action);
+    }
+}
+
 ReactDOM.render(
     <Provider 
         store={createStore(
             reducers,
-            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}
+            applyMiddleware(serviceMiddleware)
+            )//,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+        }
         recipeService={new RecipeService()}
         apiService={new ApiService()}>
         
