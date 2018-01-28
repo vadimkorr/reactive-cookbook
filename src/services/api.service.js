@@ -2,6 +2,7 @@ class ApiService {
     BASE_URL = 'http://localhost:52892';
     apis = {
         signup: '/api/accounts/register',
+        login: '/api/accounts/signin',
         submitRecipe: '/api/Recipes/submit'
     }
 
@@ -28,12 +29,12 @@ class ApiService {
         });
     }
 
-    login() {
-
-    }
-
     signup(data) {
         return this.post(this.BASE_URL + this.apis.signup, data);
+    }
+
+    login(data) {
+        return this.post(this.BASE_URL + this.apis.login, data);
     }
 }
 
