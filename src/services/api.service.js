@@ -8,8 +8,9 @@ class ApiService {
 
     post(url, body, headers) {
         let header = {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'       
+            //'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+            //,'Credentials': 'same-origin'     
         }
         if (headers) Object.assign(header, header, headers)
         return new Promise((res, rej) => {

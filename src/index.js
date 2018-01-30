@@ -31,7 +31,7 @@ function myServiceMiddleware(recipeApiService) {
     return ({ dispatch, getState }) => next => action => {
         if (action.type == SUBMIT_RECIPE) {
             console.log(getState());
-            recipeApiService.submitRecipe(getState().currentRecipe);
+            recipeApiService.submitRecipe(getState().currentRecipe, getState().user.token);
         }
         return next(action);
     }

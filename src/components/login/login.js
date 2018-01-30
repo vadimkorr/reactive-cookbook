@@ -3,9 +3,13 @@ import './login.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ApiService from '../../services/api.service';
+import * as userActions from '../../store/actions/user.actions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 
 class Login extends Component {
-    constructor({ ...restProps }, context) {
+    constructor({ userState, dispatchUserAction, ...restProps }, context) {
         super();
         this.state = {
             username: '',
@@ -13,12 +17,14 @@ class Login extends Component {
         }
     }
 
-    login() {
+    login = () => {
+        let self = this;
         this.context.apiService.login({
             username: this.state.username,
             password: this.state.password
         }).then(r => {
-            console.log("Bearer", r);
+            self.props.dispatchUserAction.setToken(r.token);
+            console.log(this.props.userState);
         });
     }
 
@@ -58,21 +64,15 @@ Login.contextTypes = {
     apiService: PropTypes.instanceOf(ApiService)
 }
 
-export default Login;
-
-/*Login.contextTypes = {
-    // recipeService: PropTypes.instanceOf(RecipeService)
-}
-
 const mapStateToProps = (state) => ({
-    recipes: state.recipes
+    userState: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(recipeActions, dispatch)
+    dispatchUserAction: bindActionCreators(userActions, dispatch)
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LeftPanel);*/
+)(Login);

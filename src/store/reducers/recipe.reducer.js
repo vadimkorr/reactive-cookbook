@@ -48,7 +48,7 @@ export function currentRecipeReducer(state = initState, action) {
                 recipeSteps: state.recipeSteps.concat([{
                         type: action.payload.type,
                         description: {
-                            time: action.payload.time,
+                            timeAmount: action.payload.time,
                             timeUnits: action.payload.timeUnits
                         }
                     }
