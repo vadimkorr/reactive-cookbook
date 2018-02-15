@@ -4,6 +4,9 @@ export const WAIT = '[RECIPE] WAIT';
 export const CLEAR_RECIPE = '[RECIPE] CLEAR_RECIPE';
 export const SUBMIT_RECIPE = '[RECIPE] SUBMIT_RECIPE';
 export const START_RECIPE = '[RECIPE] START_RECIPE';
+export const GET_MY_RECIPES = '[RECIPE] GET_MY_RECIPES';
+
+export const GET_MY_RECIPES_SUCCESS = '[RECIPE] GET_MY_RECIPES_SUCCESS';
 
 export function putIngredient(type, name, count, quantityUnits) {
 	return {
@@ -63,4 +66,17 @@ export function submitRecipe(recipe) {
 	}
 }
 
+export function getMyRecipes() {
+	return {
+		type: GET_MY_RECIPES
+	}
+}
 
+export function getMyRecipesSuccess(recipes) {
+	return {
+		type: GET_MY_RECIPES_SUCCESS,
+		payload: {
+			recipes
+		}
+	}
+}

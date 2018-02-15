@@ -21,7 +21,12 @@ class ApiService {
             })
             .then(resp => {
                 console.log("POST result: ", resp);
-                res(resp.json());
+                try {
+                    res(resp.json());// ? resp.json : resp.ok);
+                } catch (error) {
+                    console.log(error)
+                }
+                
             })
             .catch((err)=> {
                 console.log("POST error: ", err);

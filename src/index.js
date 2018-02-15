@@ -17,6 +17,8 @@ import ApiService from './services/api.service';
 
 import RecipeApiService from './services/recipe-api.service'
 import { SUBMIT_RECIPE } from './store/actions/recipe.actions';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './store/sagas'
 
 import {
     HashRouter,
@@ -24,6 +26,8 @@ import {
     Link,
     Switch
   } from 'react-router-dom';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const serviceMiddleware = myServiceMiddleware(new RecipeApiService())
 function myServiceMiddleware(recipeApiService) {
@@ -37,13 +41,16 @@ function myServiceMiddleware(recipeApiService) {
     }
 }
 
+const store = createStore(
+    reducers,
+    applyMiddleware(serviceMiddleware, sagaMiddleware)
+)//,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+rootSaga.map(s =>sagaMiddleware.run(s))
+
 ReactDOM.render(
     <Provider 
-        store={createStore(
-            reducers,
-            applyMiddleware(serviceMiddleware)
-            )//,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-        }
+        store={ store }
         recipeService={new RecipeService()}
         apiService={new ApiService()}>
         

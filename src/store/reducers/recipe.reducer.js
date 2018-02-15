@@ -78,6 +78,12 @@ export function recipeReducer(state = [], action) {
                 }
             ]
         }
+        case recipeActions.GET_MY_RECIPES_SUCCESS: {
+            debugger;
+            return [
+                ...state
+            ]
+        }
         default: {
             return state;
         }

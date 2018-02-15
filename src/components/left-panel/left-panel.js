@@ -10,9 +10,13 @@ import {connect} from 'react-redux';
 import RecipeService from '../../services/recipe.service';
 
 class LeftPanel extends Component {
-    constructor({ recipes, actions, ...restProps }, context) {
-        super();
-        console.log("RECIPE SERVICE")
+    constructor({ recipes, actions, dispatchRecipeActions, ...restProps }, context) {
+        super({ recipes, actions, dispatchRecipeActions, ...restProps });
+        this.getMyRecipes();
+    }
+
+    getMyRecipes = () => {
+        this.props.dispatchRecipeActions.getMyRecipes();
     }
 
     onRecipeClick(recipe) {
@@ -43,7 +47,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(recipeActions, dispatch)
+    dispatchRecipeActions: bindActionCreators(recipeActions, dispatch)
 });
 
 export default connect(
