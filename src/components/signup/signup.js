@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
-import ApiService from '../../services/api.service';
+import UserApiService from '../../services/user-api.service';
 
 class Signup extends Component {
     constructor({ ...restProps }, context) {
@@ -17,7 +17,7 @@ class Signup extends Component {
     }
 
     signup() {
-        this.context.apiService.signup({
+        UserApiService.signup({
             username: this.state.username,
             email: this.state.email,
             password: this.state.password
@@ -65,10 +65,6 @@ class Signup extends Component {
             </div>
         )
     }
-}
-
-Signup.contextTypes = {
-    apiService: PropTypes.instanceOf(ApiService)
 }
 
 export default Signup;

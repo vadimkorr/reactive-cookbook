@@ -11,7 +11,6 @@ import * as userActions from './store/actions/user.actions'
 
 import * as valuesActions from './store/actions/values.actions'
 import RecipeService from './services/recipe.service';
-import ApiService from './services/api.service';
 
 class App extends Component {
   constructor(props, { store, recipeService, apiService }) {
@@ -65,8 +64,6 @@ class App extends Component {
 }
 App.contextTypes = {
   store: PropTypes.object,
-  recipeService: PropTypes.instanceOf(RecipeService),
-  apiService: PropTypes.instanceOf(ApiService)
 }
 
 export default App;

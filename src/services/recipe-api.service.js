@@ -1,19 +1,20 @@
-import ApiService from './api.service';
+import { ApiService, BASE_URL, Urls } from './api.service';
 
-class RecipeApiService {
-    apiService;
-    constructor() {
-        this.apiService = new ApiService();
-    }
-
-    submitRecipe(data, token) {
-        console.log("SUBMIT RECIPE DATA", data)
-        return this.apiService.post(
-            this.apiService.BASE_URL + this.apiService.apis.submitRecipe,
+const RecipeApiService = {
+    submitRecipe: (data, token) => {
+        return ApiService.post(
+            BASE_URL + Urls.submitRecipe,
             data,
             { "Authorization": "Bearer " + token }
         );
-    }
+    },
+    getRecipes: async (token) => {
+        debugger;
+        return ApiService.get(
+            BASE_URL + Urls.getMyRecipes,
+            { 'Authorization': 'Bearer ' + token }
+        );
+    },
 }
 
 export default RecipeApiService;

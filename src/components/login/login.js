@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ApiService from '../../services/api.service';
+import UserApiService from '../../services/user-api.service';
 import * as userActions from '../../store/actions/user.actions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -19,7 +19,7 @@ class Login extends Component {
 
     login = () => {
         let self = this;
-        this.context.apiService.login({
+        UserApiService.login({
             username: this.state.username,
             password: this.state.password
         }).then(r => {
@@ -58,10 +58,6 @@ class Login extends Component {
             </div>
         )
     }
-}
-
-Login.contextTypes = {
-    apiService: PropTypes.instanceOf(ApiService)
 }
 
 const mapStateToProps = (state) => ({

@@ -15,10 +15,10 @@ import { reducers } from './store/reducers/reducers';
 import RecipeService from './services/recipe.service';
 import ApiService from './services/api.service';
 
-import RecipeApiService from './services/recipe-api.service'
 import { SUBMIT_RECIPE } from './store/actions/recipe.actions';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './store/sagas'
+import rootSaga from './store/sagas';
+import RecipeApiService from './services/recipe-api.service';
 
 import {
     HashRouter,
@@ -29,13 +29,13 @@ import {
 
 const sagaMiddleware = createSagaMiddleware();
 
-const serviceMiddleware = myServiceMiddleware(new RecipeApiService())
-function myServiceMiddleware(recipeApiService) {
+const serviceMiddleware = myServiceMiddleware()
+function myServiceMiddleware() {
     console.log("myServiceMiddleware init!");
     return ({ dispatch, getState }) => next => action => {
         if (action.type == SUBMIT_RECIPE) {
             console.log(getState());
-            recipeApiService.submitRecipe(getState().currentRecipe, getState().user.token);
+            RecipeApiService.submitRecipe(getState().currentRecipe, getState().user.token);
         }
         return next(action);
     }
@@ -51,8 +51,7 @@ rootSaga.map(s =>sagaMiddleware.run(s))
 ReactDOM.render(
     <Provider 
         store={ store }
-        recipeService={new RecipeService()}
-        apiService={new ApiService()}>
+        recipeService={new RecipeService()}>
         
         <HashRouter>
             <div className="root-container">
