@@ -26,6 +26,7 @@ class LeftPanel extends Component {
     }
 
     render() {
+        this.props.recipes.map((recipe, ind) => console.log(ind, recipe));
         return (
             <div className="left-container">
                 <p className="recipes-title">My Recipes</p>

@@ -5,6 +5,7 @@ export const CLEAR_RECIPE = '[RECIPE] CLEAR_RECIPE';
 export const SUBMIT_RECIPE = '[RECIPE] SUBMIT_RECIPE';
 export const START_RECIPE = '[RECIPE] START_RECIPE';
 export const GET_MY_RECIPES = '[RECIPE] GET_MY_RECIPES';
+export const SUBMIT_RECIPE_SUCCESS = '[RECIPE] SUBMIT_RECIPE_SUCCESS';
 
 export const GET_MY_RECIPES_SUCCESS = '[RECIPE] GET_MY_RECIPES_SUCCESS';
 
@@ -57,9 +58,20 @@ export function clearRecipe() {
 	}
 }
 
-export function submitRecipe(recipe) {
+export function submitRecipe(name, date, recipe) {
 	return {
 		type: SUBMIT_RECIPE,
+		payload: {
+			name,
+			date,
+			recipe
+		}
+	}
+}
+
+export function submitRecipeSuccess(recipe) {
+	return {
+		type: SUBMIT_RECIPE_SUCCESS,
 		payload: {
 			recipe
 		}

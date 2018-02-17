@@ -15,43 +15,42 @@ import RecipeService from './services/recipe.service';
 class App extends Component {
   constructor(props, { store, recipeService, apiService }) {
     super();
-    console.log("A P P: ", recipeService)
     this.state = {
       store
     }
 
-    const boundSetUserName = (name) => store.dispatch(userActions.setUserName(name))
+    // const boundSetUserName = (name) => store.dispatch(userActions.setUserName(name))
     
-    const boundPutIngredient = (name, count, quantityUnits) => store.dispatch(recipeActions.putIngredient(name, count, quantityUnits))
-    const boundMakeProcess = (processName) => store.dispatch(recipeActions.makeProcess(processName))
-    const boundWait = (time, timeUnits) => store.dispatch(recipeActions.wait(time, timeUnits))
-    const boundSubmitRecipe = () => store.dispatch(recipeActions.submitRecipe())
+    // const boundPutIngredient = (name, count, quantityUnits) => store.dispatch(recipeActions.putIngredient(name, count, quantityUnits))
+    // const boundMakeProcess = (processName) => store.dispatch(recipeActions.makeProcess(processName))
+    // const boundWait = (time, timeUnits) => store.dispatch(recipeActions.wait(time, timeUnits))
+    // const boundSubmitRecipe = () => store.dispatch(recipeActions.submitRecipe())
     
-    boundPutIngredient("Potato", 5, "piece")
-    boundSetUserName("John")
+    // boundPutIngredient("Potato", 5, "piece")
+    // boundSetUserName("John")
 
-    store.dispatch(valuesActions.setIngredients(dataProvider.ingredients))
-    store.dispatch(valuesActions.setProcesses(dataProvider.processes))
-    store.dispatch(valuesActions.setQuantityUnits(dataProvider.quantityUnits))
-    store.dispatch(valuesActions.setTimeUnits(dataProvider.timeUnits))
+    // store.dispatch(valuesActions.setIngredients(dataProvider.ingredients))
+    // store.dispatch(valuesActions.setProcesses(dataProvider.processes))
+    // store.dispatch(valuesActions.setQuantityUnits(dataProvider.quantityUnits))
+    // store.dispatch(valuesActions.setTimeUnits(dataProvider.timeUnits))
     
-    //create recipe
-    for(let i=0; i<1; i++) {
-      (() => {
-        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing1', 5, 'kg'));
-        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing2', 2, 'kg'));
-        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 2, 'kg'));
-        store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 1, 'liter'));
-        store.dispatch(recipeActions.makeProcess(dataProvider.recipeStepType[1], "cool"));
-        store.dispatch(recipeActions.wait(dataProvider.recipeStepType[2], 1, 'h'));
-        let name = i == 0 ? "very very very long name of salad" : "Salad " + i;
-        store.dispatch(recipeActions.submitRecipe(name, Date.now(), store.getState().currentRecipe));
-        store.dispatch(recipeActions.clearRecipe());
-      })();
-    }
+    // //create recipe
+    // for(let i=0; i<0; i++) {
+    //   (() => {
+    //     store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing1', 5, 'kg'));
+    //     store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing2', 2, 'kg'));
+    //     store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 2, 'kg'));
+    //     store.dispatch(recipeActions.putIngredient(dataProvider.recipeStepType[0], 'ing3', 1, 'liter'));
+    //     store.dispatch(recipeActions.makeProcess(dataProvider.recipeStepType[1], "cool"));
+    //     store.dispatch(recipeActions.wait(dataProvider.recipeStepType[2], 1, 'h'));
+    //     let name = i == 0 ? "very very very long name of salad" : "Salad " + i;
+    //     store.dispatch(recipeActions.submitRecipe(name, Date.now(), store.getState().currentRecipe));
+    //     store.dispatch(recipeActions.clearRecipe());
+    //   })();
+    // }
     
     
-    console.log(store.getState())
+    // console.log(store.getState())
   }
   render() {
     return (

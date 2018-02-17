@@ -68,13 +68,17 @@ export function recipeReducer(state = [], action) {
 	switch(action.type) {
 		case recipeActions.SUBMIT_RECIPE: {
 			return [
+                ...state
+            ]
+        }
+        case recipeActions.SUBMIT_RECIPE_SUCCESS: {
+			return [
                 ...state,
                 {
-                    //id: state.length,
-                    //userId: null,
-                    date: action.payload.date,
-                    name: action.payload.name,
-                    recipeSteps: action.payload.recipe
+                    id: state.length,
+                    date: action.payload.recipe.date,
+                    name: action.payload.recipe.name,
+                    recipeSteps: action.payload.recipe.recipeSteps
                 }
             ]
         }

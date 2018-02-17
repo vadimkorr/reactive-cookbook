@@ -93,7 +93,6 @@ class Board extends Component {
             recipeSteps: ""
         })
         this.stopRecipe();
-        alert("Your recipe was succesfully saved!");
     }
 
     render() {
