@@ -8,7 +8,6 @@ import {select} from 'redux-saga/effects';
 function* getMyRecipes(action) {
   const token = yield select(selectUserToken);
   const result = yield call(RecipeApiService.getRecipes, token);
-  debugger;
   yield put.resolve({
     type: GET_MY_RECIPES_SUCCESS,
     payload: {

@@ -78,9 +78,7 @@ export function recipeReducer(state = [], action) {
                 }
             ]
         }
-        case recipeActions.GET_MY_RECIPES_SUCCESS: {
-            console.log("R E C I P E S", action.payload.recipes);
-            debugger;
+        case recipeActions.GET_MY_RECIPES_SUCCESS: { 
             return [
                 ...state,
                 ...action.payload.recipes

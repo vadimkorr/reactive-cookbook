@@ -19,12 +19,15 @@ import { SUBMIT_RECIPE } from './store/actions/recipe.actions';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './store/sagas';
 import RecipeApiService from './services/recipe-api.service';
+import ProtectedRoute from './components/protected-route/protected-route';
 
 import {
     HashRouter,
     Route,
     Link,
-    Switch
+    Switch,
+    BrowserRouter,
+    Redirect
   } from 'react-router-dom';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -50,20 +53,19 @@ rootSaga.map(s =>sagaMiddleware.run(s))
 
 ReactDOM.render(
     <Provider 
-        store={ store }
-        recipeService={new RecipeService()}>
+        store={ store }>
         
-        <HashRouter>
+        <BrowserRouter>
             <div className="root-container">
                 <Header className="header-container"/>
                 <Switch>
-                    <Route exact path="/" component={App} />
-                    <Route path="/about" component={About} />
+                    <ProtectedRoute exact path="/" component={App} />
+                    <ProtectedRoute path="/about" component={About} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />                    
                 </Switch>
             </div>
-        </HashRouter>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

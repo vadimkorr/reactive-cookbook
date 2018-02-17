@@ -24,7 +24,7 @@ class Login extends Component {
             password: this.state.password
         }).then(r => {
             self.props.dispatchUserAction.setToken(r.token);
-            console.log(this.props.userState);
+            this.props.history.push('/');
         });
     }
 

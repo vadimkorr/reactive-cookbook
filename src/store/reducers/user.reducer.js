@@ -1,8 +1,8 @@
 import * as userActions from '../actions/user.actions'
 
 let userInitialState = {
-	name: "",
-	token: ""
+	name: null,
+	token: null
 }
 
 export function userReducer(state = userInitialState, action) {

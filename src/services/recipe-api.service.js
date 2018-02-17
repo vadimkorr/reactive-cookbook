@@ -9,7 +9,6 @@ const RecipeApiService = {
         );
     },
     getRecipes: async (token) => {
-        debugger;
         return ApiService.get(
             BASE_URL + Urls.getMyRecipes,
             { 'Authorization': 'Bearer ' + token }
