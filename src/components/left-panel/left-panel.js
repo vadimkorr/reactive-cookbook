@@ -20,9 +20,13 @@ class LeftPanel extends Component {
     }
 
     onRecipeClick(recipe) {
-        alert(`${recipe.name}\n${this.context.recipeService.getRecipeAsText(recipe.recipeSteps).reduce((sum, curr) => {
-            return sum += "\n" + curr;
-        })}`);
+        alert(`
+${recipe.name}\n
+${RecipeService.getRecipeAsText(recipe.recipeSteps)
+    .reduce((sum, curr) => {
+        return sum += "\n" + curr;
+    })}
+        `);
     }
 
     render() {
@@ -38,9 +42,6 @@ class LeftPanel extends Component {
             </div>
         );
     };
-}
-LeftPanel.contextTypes = {
-    recipeService: PropTypes.instanceOf(RecipeService)
 }
 
 const mapStateToProps = (state) => ({

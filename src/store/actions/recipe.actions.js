@@ -69,10 +69,11 @@ export function submitRecipe(name, date, recipe) {
 	}
 }
 
-export function submitRecipeSuccess(recipe) {
+export function submitRecipeSuccess(id, recipe) {
 	return {
 		type: SUBMIT_RECIPE_SUCCESS,
 		payload: {
+			id,
 			recipe
 		}
 	}

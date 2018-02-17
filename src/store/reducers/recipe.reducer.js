@@ -75,7 +75,7 @@ export function recipeReducer(state = [], action) {
 			return [
                 ...state,
                 {
-                    id: state.length,
+                    id: action.payload.id,
                     date: action.payload.recipe.date,
                     name: action.payload.recipe.name,
                     recipeSteps: action.payload.recipe.recipeSteps

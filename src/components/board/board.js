@@ -63,9 +63,9 @@ class Board extends Component {
     onPutDone = (e) => {
         this.props.dispatchRecipeAction.putIngredient(
             dataProvider.recipeStepType.indexOf('put'),  
-            this.refs.ingredientName.state.value,
-            this.refs.ingredientCount.value,
-            this.refs.ingredientQuantityUnits.state.value
+            this.ingredientName.getSelected(),
+            this.ingredientCount.value,
+            this.ingredientQuantityUnits.getSelected()
         );
         this.pushToRecipeSteps("put");
     }
@@ -82,7 +82,7 @@ class Board extends Component {
     onDoDone = (e) => {
         this.props.dispatchRecipeAction.makeProcess(
             dataProvider.recipeStepType.indexOf('make'), 
-            this.refs.makeProcess.state.value
+            this.makeProcess.getSelected()
         );
         this.pushToRecipeSteps("make");
     }
@@ -112,9 +112,9 @@ class Board extends Component {
                         <div className="recipe-actions">
                             <div className="recipe-action-container">
                                 <span>Put</span>
-                                <ArrayDropdown arr={this.state.ingredients} ref="ingredientName"/>
-                                <FormControl type="text" ref="ingredientCount"/>
-                                <ArrayDropdown arr={this.state.quantityUnits} ref="ingredientQuantityUnits"/>
+                                <ArrayDropdown arr={this.state.ingredients} ref={ node => this.ingredientName = node } />
+                                <FormControl type="text" inputRef={ node => this.ingredientCount = node }/>
+                                <ArrayDropdown arr={this.state.quantityUnits} ref={ node => this.ingredientQuantityUnits = node } />
                                 <Button bsStyle="success" className="actionDone" onClick={this.onPutDone}>Done</Button>
                             </div>
                             <div className="recipe-action-container">
@@ -125,7 +125,7 @@ class Board extends Component {
                             </div>
                             <div className="recipe-action-container">
                                 <span>Do</span>
-                                <ArrayDropdown arr={this.state.processes} ref="makeProcess"/>
+                                <ArrayDropdown arr={this.state.processes} ref={ node => this.makeProcess = node } />
                                 <Button bsStyle="success" className="actionDone" onClick={this.onDoDone}>Done</Button>
                             </div>
                         </div>
