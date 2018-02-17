@@ -89,7 +89,6 @@ class Board extends Component {
 
     onSaveRecipe = (e) => {
         this.props.dispatchRecipeAction.submitRecipe(this.state.recipeName, Date.now(), this.props.getCurrentRecipe());
-        this.props.dispatchRecipeAction.clearRecipe();
         this.setState({
             recipeSteps: ""
         })

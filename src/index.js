@@ -1,8 +1,9 @@
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { Provider } from 'react-redux';
 import Provider from './Provider';
-import './index.css';
+
 import App from './App';
 import About from './components/about/about';
 import Login from './components/login/login';
@@ -11,7 +12,7 @@ import Header from './components/header/header';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { reducers } from './store/reducers/reducers';
-//import { Router, Route, hashHistory } from 'react-router';
+
 import RecipeService from './services/recipe.service';
 import ApiService from './services/api.service';
 
@@ -28,25 +29,25 @@ import {
     Switch,
     BrowserRouter,
     Redirect
-  } from 'react-router-dom';
+} from 'react-router-dom';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const serviceMiddleware = myServiceMiddleware()
-function myServiceMiddleware() {
-    console.log("myServiceMiddleware init!");
-    return ({ dispatch, getState }) => next => action => {
-        if (action.type == SUBMIT_RECIPE) {
-            console.log(getState());
-            RecipeApiService.submitRecipe(getState().currentRecipe, getState().user.token);
-        }
-        return next(action);
-    }
-}
+// const serviceMiddleware = myServiceMiddleware()
+// function myServiceMiddleware() {
+//     console.log("myServiceMiddleware init!");
+//     return ({ dispatch, getState }) => next => action => {
+//         if (action.type == SUBMIT_RECIPE) {
+//             console.log(getState());
+//             RecipeApiService.submitRecipe(getState().currentRecipe, getState().user.token);
+//         }
+//         return next(action);
+//     }
+// }
 
 const store = createStore(
     reducers,
-    applyMiddleware(serviceMiddleware, sagaMiddleware)
+    applyMiddleware(sagaMiddleware)
 )//,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 rootSaga.map(s =>sagaMiddleware.run(s))
