@@ -17,7 +17,7 @@ const ApiServiceHelper = {
     }
 }
 
-export const BASE_URL = 'http://localhost:52892';
+export const BASE_URL = 'https://reactivewebapi.azurewebsites.net';
 export const Urls = {
     signup: '/api/accounts/register',
     login: '/api/accounts/signin',
